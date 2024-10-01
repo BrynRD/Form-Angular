@@ -1,0 +1,50 @@
+<div class="container">
+    <h2>Registro de Asistencia</h2>
+  
+    <form [formGroup]="registroForm" (ngSubmit)="agregarRegistro()">  
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" class="form-control" formControlName="nombre" />
+        <div *ngIf="registroForm.get('nombre')?.invalid && registroForm.get('nombre')?.touched" class="text-danger">
+          El nombre es requerido
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" class="form-control" formControlName="apellido" />
+        <div *ngIf="registroForm.get('apellido')?.invalid && registroForm.get('apellido')?.touched" class="text-danger">
+          El apellido es requerido
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" class="form-control" formControlName="edad" />
+        <div *ngIf="registroForm.get('edad')?.invalid && registroForm.get('edad')?.touched" class="text-danger">
+          Edad inválida, debe estar entre 0 y 120 años
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="distrito">Distrito de Lima:</label>
+        <select id="distrito" class="form-control" formControlName="distrito">
+          <option value="" disabled selected>Seleccione un distrito</option>
+          <option *ngFor="let distrito of distritosLima" [value]="distrito">{{ distrito }}</option>
+        </select>
+        <div *ngIf="registroForm.get('distrito')?.invalid && registroForm.get('distrito')?.touched" class="text-danger">
+          El distrito es requerido
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="registroForm.invalid">Registrar Asistencia</button>
+    </form>
+  
+    <h3>Lista de Asistencia:</h3>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let registro of registros">
+        {{ registro.nombre }} {{ registro.apellido }} - {{ registro.edad }} años - {{ registro.distrito }}
+      </li>
+    </ul>
+  </div>
+  

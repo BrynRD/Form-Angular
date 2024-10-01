@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-
+import { RegistroFormComponent } from './registro-form/registro-form.component';  // Importa el componente standalone
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [RegistroFormComponent],  
+  template: '<app-registro-form></app-registro-form>',  
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'form-asistencia';
